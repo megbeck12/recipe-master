@@ -1,1 +1,1 @@
-# pinterest-clone
+# recipe-master
