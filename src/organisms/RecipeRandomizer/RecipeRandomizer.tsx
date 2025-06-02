@@ -8,14 +8,16 @@ import { LunchDiningOutlined } from "@mui/icons-material";
 import { SeasonalRecipesDropdown } from "../../molecules/SeasonalRecipesDropdown/SeasonalRecipesDropdown";
 import { DaysField } from "../../molecules/DaysField/DaysField";
 import { RandomizerContainer } from "../../molecules/RandomizerContainer/RandomizerContainer";
+import { RecipeIcon } from "../../atoms/RecipeIcon/RecipeIcon";
+import { RecipeArray } from "../../types/recipeType/recipeType";
 
 export const RecipeRandomizer: FC = () => {
-  const [recipesArray, setRecipesArray] = useState([""]);
+  const [recipesArray, setRecipesArray] = useState<RecipeArray>([]);
   const [days, setDays] = useState(1);
   const [season, setSeason] = useState("");
 
   const handleOnClick = () => {
-    let selectedRecipes: string[];
+    let selectedRecipes: RecipeArray;
 
     if (season === "Summer") {
       selectedRecipes = [...generalRecipes, ...summerRecipes];
@@ -51,13 +53,9 @@ export const RecipeRandomizer: FC = () => {
           Generate Recipes
         </Button>
       </Box>
-      {recipesArray.map((recipe) => (
+      {recipesArray.map(({ recipe, icon }) => (
         <Stack direction="row" paddingTop={5}>
-          {recipesArray[0] !== "" && recipesArray.length && (
-            <Icon sx={{ paddingRight: 1 }}>
-              <LunchDiningOutlined />
-            </Icon>
-          )}
+          {icon}
           <Typography variant="body1">{recipe}</Typography>
         </Stack>
       ))}
