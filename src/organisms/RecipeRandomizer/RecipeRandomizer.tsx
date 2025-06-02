@@ -14,23 +14,15 @@ export const RecipeRandomizer: FC = () => {
   const [days, setDays] = useState(1);
   const [season, setSeason] = useState("");
 
-  const allRecipesArray = [
-    ...generalRecipes,
-    ...summerRecipes,
-    ...winterRecipes,
-  ];
-  const summerRecipesArray = [...generalRecipes, ...summerRecipes];
-  const winterRecipesArray = [...generalRecipes, ...winterRecipes];
-
   const handleOnClick = () => {
     let selectedRecipes: string[];
 
     if (season === "Summer") {
-      selectedRecipes = summerRecipesArray;
+      selectedRecipes = [...generalRecipes, ...summerRecipes];
     } else if (season === "Winter") {
-      selectedRecipes = winterRecipesArray;
+      selectedRecipes = [...generalRecipes, ...winterRecipes];
     } else {
-      selectedRecipes = allRecipesArray;
+      selectedRecipes = [...generalRecipes, ...summerRecipes, ...winterRecipes];
     }
 
     const generatedRecipe = generateRecipes(selectedRecipes, days);
