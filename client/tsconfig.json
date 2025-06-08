@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",                                // JavaScript version to transpile to
+    "lib": ["dom", "esnext"],                       // Includes type definitions for DOM and esnext features
+    "jsx": "react",                                // Specifies JSX transformation method
+    "module": "esnext",                            // The module system to use (e.g., ES modules)
+    "moduleResolution": "node",                    // Resolves modules the way Node.js does
+    "strict": true,                                // Enables strict mode for type-checking
+    "esModuleInterop": true,                       // Ensures compatibility with CommonJS modules
+    "skipLibCheck": true,                          // Skips type-checking of declaration files for faster compilation
+    "forceConsistentCasingInFileNames": true,      // Ensures that file names are case-consistent
+    "resolveJsonModule": true,                     // Allows importing JSON files as modules
+    "noImplicitAny": true,                         // Ensures that variables have explicit types
+    "downlevelIteration": true,                    // Ensures proper iteration on older versions of TypeScript
+    "allowJs": true                                // Allows JavaScript files to be compiled
+  },
+  "include": ["src"],                               // Specifies the files to be included in the compilation (e.g., src folder)
+  "exclude": ["node_modules"]                       // Specifies the files to be excluded from the compilation
+}
+
