@@ -6,14 +6,16 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
+import { useSelector } from "react-redux";
+import { selectRecipeSelection } from "../../reducers/recipe-reducer";
 
 interface Props {
   title: string;
 }
 
 export const RecipeCard: FC<Props> = ({ title }) => {
-  const [recipeOpen, setRecipeOpen] = useState(true);
+  const recipeOpen = useSelector(selectRecipeSelection);
 
   return (
     recipeOpen && (

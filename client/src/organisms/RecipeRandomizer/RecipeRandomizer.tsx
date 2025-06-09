@@ -4,18 +4,23 @@ import { Box, Button, Icon, Stack, Typography } from "@mui/material";
 import { generalRecipes } from "../../data/generalRecipes";
 import { summerRecipes } from "../../data/summerRecipes";
 import { winterRecipes } from "../../data/winterRecipes";
-import { LunchDiningOutlined } from "@mui/icons-material";
 import { SeasonalRecipesDropdown } from "../../molecules/SeasonalRecipesDropdown/SeasonalRecipesDropdown";
 import { DaysField } from "../../molecules/DaysField/DaysField";
 import { RandomizerContainer } from "../../molecules/RandomizerContainer/RandomizerContainer";
-import { RecipeIcon } from "../../atoms/RecipeIcon/RecipeIcon";
 import { RecipeArray } from "../../types/recipeType/recipeType";
 import { RecipeCard } from "../../molecules/RecipeCard/RecipeCard";
+import {
+  selectRecipeSelection,
+  setRecipeAction,
+} from "../../reducers/recipe-reducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export const RecipeRandomizer: FC = () => {
+  const dispatch = useDispatch();
   const [recipesArray, setRecipesArray] = useState<RecipeArray>([]);
   const [days, setDays] = useState(1);
   const [season, setSeason] = useState("");
+  const recipeCardState = useSelector(selectRecipeSelection);
 
   const handleOnClick = () => {
     let selectedRecipes: RecipeArray;
@@ -39,7 +44,7 @@ export const RecipeRandomizer: FC = () => {
     if (season) setSeason(season);
   };
 
-  const handleRecipeClick = () => {};
+  const handleRecipeClick = () => dispatch(setRecipeAction(!recipeCardState));
 
   return (
     <RandomizerContainer>
@@ -59,7 +64,11 @@ export const RecipeRandomizer: FC = () => {
       {recipesArray.map(({ recipe, icon }) => (
         <Stack direction="row" paddingTop={5}>
           <Stack paddingRight={1}>{icon}</Stack>
-          <Typography onClick={handleRecipeClick} variant="body1">
+          <Typography
+            component="span"
+            onClick={() => handleRecipeClick}
+            variant="body1"
+          >
             {recipe}
           </Typography>
           <RecipeCard title={recipe} />
